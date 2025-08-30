@@ -1,5 +1,65 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model ECom.UI.Models.LoginViewModel
+
 @{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .input-divider {
+        border-left: 2px solid #ccc; /* This creates the vertical line */
+        height: 24px; /* Adjust height to match your input */
+        margin-left: 8px; /* Spacing from the label */
+        margin-right: 8px; /* Spacing from the input */
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 85vh;">
+    <div class="col-md-5">
+        <div class="card shadow-lg border-0 rounded-lg">
+            <div class="card-header bg-dark text-white text-center py-4 rounded-top-lg">
+                <h3 class="mb-0 fw-bold">Welcome Back! <i class="fas fa-shopping-basket"></i></h3>
+            </div>
+            <div class="card-body p-4">
+                <form asp-controller="User" asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="UserId" class="form-label font-weight-bold">
+                            Email
+                        </label>
+                      
+                        <input asp-for="UserId" class="form-control" placeholder="Enter your Email" />
+                        <span asp-validation-for="UserId" class="text-danger small mt-1 d-block"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label font-weight-bold-label">
+                            Password
+                        </label>
+                       
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                        <span asp-validation-for="Password" class="text-danger small mt-1 d-block"></span>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg mt-3">
+                            <i class="fas fa-sign-in-alt me-2"></i> Log In
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer bg-light text-center py-3">
+                <small class="text-muted">
+                    Don't have an account? <a href="/User/Register" class="form-label font-weight-bold">Sign up now</a>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
